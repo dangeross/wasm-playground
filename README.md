@@ -1,1 +1,3 @@
 # wasm-playground
+
+`just pack`
