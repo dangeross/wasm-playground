@@ -1,3 +1,3 @@
 # wasm-playground
 
-`just pack`
+`make pack`

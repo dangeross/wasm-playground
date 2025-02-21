@@ -7,6 +7,10 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-sdk-common = { git = "https://github.com/breez/breez-sdk", branch = "savage-wasm-sdk-common" }
-wasm-bindgen = "0.2"
-wasm-bindgen-futures = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+sdk-common = { git = "https://github.com/breez/breez-sdk", branch = "savage-wasm-sdk-common", features = ["liquid"] }
+#sdk-common = { path = "../../Projects/breez-sdk/libs/sdk-common", features = ["liquid"] }
+tsify-next = "0.5.5"
+wasm-bindgen = "*"
+wasm-bindgen-futures = "*"
+anyhow = "1.0.95"
