@@ -34,4 +34,9 @@ macro_rules! wasm_error_wrapper {
     }
 }
 
-wasm_error_wrapper!(anyhow::Error, &str, String);
+wasm_error_wrapper!(
+    anyhow::Error,
+    sdk_common::invoice::InvoiceError,
+    &str,
+    String
+);

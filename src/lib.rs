@@ -1,8 +1,9 @@
 mod errors;
 pub mod models;
 
-use crate::models::{FiatCurrency, InputType, Rate, WasmResult};
+use crate::models::{FiatCurrency, InputType, Rate, LNInvoice, WasmResult};
 use sdk_common::input_parser::parse;
+use sdk_common::invoice::parse_invoice;
 use sdk_common::prelude::{BreezServer, FiatAPI, PRODUCTION_BREEZSERVER_URL};
 use std::sync::Arc;
 use wasm_bindgen::prelude::*;
@@ -39,6 +40,12 @@ impl WasmPlayground {
     #[wasm_bindgen(js_name = "parse")]
     pub async fn parse(&self, input: String) -> WasmResult<InputType> {
         let res = parse(&input, None).await?;
+        Ok(res.into())
+    }
+
+    #[wasm_bindgen(js_name = "parseInvoice")]
+    pub fn parse_invoice(&self, bolt11: String) -> WasmResult<LNInvoice> {
+        let res = parse_invoice(&bolt11)?;
         Ok(res.into())
     }
 }
