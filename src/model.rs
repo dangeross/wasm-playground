@@ -214,6 +214,16 @@ pub struct LnUrlAuthRequestData {
     pub url: String,
 }
 
+#[sdk_macros::extern_wasm_bindgen(sdk_common::prelude::LnUrlCallbackStatus)]
+pub enum LnUrlCallbackStatus {
+    Ok,
+    #[serde(rename = "ERROR")]
+    ErrorStatus {
+        #[serde(flatten)]
+        data: LnUrlErrorData,
+    },
+}
+
 #[sdk_macros::extern_wasm_bindgen(sdk_common::prelude::LnUrlErrorData)]
 pub struct LnUrlErrorData {
     pub reason: String,
@@ -268,4 +278,28 @@ pub struct Symbol {
     pub template: Option<String>,
     pub rtl: Option<bool>,
     pub position: Option<u32>,
+}
+
+#[sdk_macros::extern_wasm_bindgen(crate::sdk::model::Payment)]
+pub struct Payment {
+    pub id: String,
+}
+
+#[sdk_macros::extern_wasm_bindgen(crate::sdk::model::LogEntry)]
+pub struct LogEntry {
+    pub line: String,
+    pub level: String,
+}
+
+#[sdk_macros::extern_wasm_bindgen(crate::sdk::model::SdkEvent)]
+pub enum SdkEvent {
+    PaymentFailed { details: Payment },
+    PaymentPending { details: Payment },
+    PaymentRefundable { details: Payment },
+    PaymentRefunded { details: Payment },
+    PaymentRefundPending { details: Payment },
+    PaymentSucceeded { details: Payment },
+    PaymentWaitingConfirmation { details: Payment },
+    PaymentWaitingFeeAcceptance { details: Payment },
+    Synced,
 }

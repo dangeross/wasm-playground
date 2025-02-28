@@ -404,6 +404,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "dns-parser"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c4d33be9473d06f75f58220f71f7a9317aca647dc061dbd3c361b0bef505fbea"
+dependencies = [
+ "byteorder",
+ "quick-error",
+]
+
+[[package]]
 name = "either"
 version = "1.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1292,6 +1302,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0e7465ac9959cc2b1404e8e2367b43684a6d13790fe23056cc8c6c5a6b7bcb94"
 
 [[package]]
+name = "maybe-sync"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7551d6fcc47ecf769e6c8b2e5dd7f56f90361d3d1360e3a280c8d0d7c8e680b7"
+
+[[package]]
 name = "memchr"
 version = "2.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1959,7 +1975,6 @@ dependencies = [
 [[package]]
 name = "sdk-common"
 version = "0.6.2"
-source = "git+https://github.com/breez/breez-sdk?branch=savage-wasm-sdk-common#3a0bfc219421b70bfc313b3fc8341169c1bb2741"
 dependencies = [
  "aes",
  "anyhow",
@@ -1968,6 +1983,7 @@ dependencies = [
  "bip21",
  "bitcoin 0.29.2",
  "cbc",
+ "dns-parser",
  "elements",
  "getrandom 0.2.14",
  "hex",
@@ -2002,7 +2018,6 @@ dependencies = [
 [[package]]
 name = "sdk-macros"
 version = "0.6.2"
-source = "git+https://github.com/breez/breez-sdk?branch=savage-wasm-sdk-common#3a0bfc219421b70bfc313b3fc8341169c1bb2741"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2712,6 +2727,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be"
 
 [[package]]
+name = "uuid"
+version = "1.15.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e0f540e3240398cce6128b64ba83fdbdd86129c16a3aa1a3a252efd66eb3d587"
+dependencies = [
+ "getrandom 0.3.1",
+ "js-sys",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "vcpkg"
 version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2823,10 +2849,13 @@ name = "wasm-playground"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "maybe-sync",
  "sdk-common",
  "sdk-macros",
  "serde",
+ "tokio",
  "tsify-next",
+ "uuid",
  "wasm-bindgen",
  "wasm-bindgen-futures",
 ]

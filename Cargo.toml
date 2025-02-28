@@ -8,11 +8,14 @@ crate-type = ["cdylib"]
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
-sdk-common = { git = "https://github.com/breez/breez-sdk", branch = "savage-wasm-sdk-common", features = ["liquid"] }
-sdk-macros = { git = "https://github.com/breez/breez-sdk", branch = "savage-wasm-sdk-common" }
-#sdk-common = { path = "../../Projects/breez-sdk/libs/sdk-common", features = ["liquid"] }
-#sdk-macros = { path = "../../Projects/breez-sdk/libs/sdk-macros" }
+#sdk-common = { git = "https://github.com/breez/breez-sdk", branch = "savage-wasm-sdk-common", features = ["liquid"] }
+#sdk-macros = { git = "https://github.com/breez/breez-sdk", branch = "savage-wasm-sdk-common" }
+sdk-common = { path = "../../Projects/breez-sdk/libs/sdk-common", features = ["liquid"] }
+sdk-macros = { path = "../../Projects/breez-sdk/libs/sdk-macros" }
 tsify-next = "0.5.5"
 wasm-bindgen = "*"
 wasm-bindgen-futures = "*"
 anyhow = "1.0.95"
+maybe-sync = "0.1.1"
+uuid = { version = "1.15.1", features = ["v4", "js"] }
+tokio = { version = "1.43.0", features = ["sync"] }
