@@ -1,6 +1,6 @@
 // Import our outputted wasm ES6 module
 // Which, export default's, an initialization function
-import init, { WasmPlayground } from "./pkg/wasm_playground.js";
+import init, { WasmPlayground, setLogger } from "./pkg/wasm_playground.js";
 
 const addToDocument = function (text) {
   let pEl = document.createElement("p");
@@ -16,13 +16,33 @@ class JsEventListener {
   }
 }
 
+class JsLogger {
+  log = (logEntry) => {
+    addToDocument(`LOG [${logEntry.level}]: ${logEntry.line}`)
+  }
+}
+
+class JsSigner {
+  xpub = () => { return [0] }
+  deriveXpub = (derivationPath) => { return [1] }
+  signEcdsa = (msg, derivationPath) => { return [2] }
+  signEcdsaRecoverable = (msg) => { return [3] }
+  slip77MasterBlindingKey = () => { return [4] }
+  hmacSha256 = (msg, derivationPath) => { return [5] }
+  eciesEncrypt = (msg) => { return [6] }
+  eciesDecrypt = (msg) => { return [7] }
+}
+
 const runWasm = async () => {
   // Instantiate our wasm module
   const helloWorld = await init("./pkg/wasm_playground_bg.wasm");
   const eventListener = new JsEventListener();
+  const signer = new JsSigner();
+
+  setLogger("trace");
 
   try {
-    const wp = WasmPlayground.new();
+    const wp = WasmPlayground.newWithSigner(signer);
 
     //const resFr = await wp.fetchFiatRates();
     //addToDocument(`fetchFiatRates: ${JSON.stringify(resFr, null, 2)}`);

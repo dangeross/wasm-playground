@@ -19,3 +19,7 @@ anyhow = "1.0.95"
 maybe-sync = "0.1.1"
 uuid = { version = "1.15.1", features = ["v4", "js"] }
 tokio = { version = "1.43.0", features = ["sync"] }
+log = { version = "0.4.20", features = ["std"] }
+console_log = "1"
+js-sys = "0.3.77"
+thiserror = "1.0.69"
